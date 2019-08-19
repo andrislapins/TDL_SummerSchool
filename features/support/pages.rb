@@ -3,5 +3,6 @@ class Pages
 
   def initialize
     @login ||= LoginPage.new
+    @home ||= HomePage.new
   end
 end
