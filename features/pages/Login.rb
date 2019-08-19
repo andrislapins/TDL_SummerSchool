@@ -5,7 +5,7 @@ class LoginPage < BasePage
   attr_accessor :chatMessageInput, :leaveCallButton, :userSettings, :logOutButton
 
   def initialize
-    @email = Element.new(:xpath, "//*[@id='app-mount']/div[1]/div/div[2]/div/form/div/div[3]/div[1]/div/input")
+    @email = Element.new(:xpath, "//input[@type='email']")
     @password = Element.new(:xpath, "//input[@type='password']")
     @loginButton = Element.new(:xpath, "//button[@type='submit']")
     @skipButton = Element.new(:xpath, "//*[text()='Skip']")

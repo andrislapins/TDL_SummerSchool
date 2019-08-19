@@ -8,12 +8,6 @@ file = YAML.load_file('config/test_data.yml')
     when 'user1' then
       $user_manager.current_user = 'user1'
       @pages.login.fill_form(file['user1'])
-      sleep 5
-      if @pages.login.skipButton.visible?
-        @pages.login.skipButton.click
-      else
-        puts 'Skip button is invisble'
-      end
     when 'user2' then
       $user_manager.current_user = 'user2'
       @pages.login.fill_form(file['user2'])
@@ -22,7 +16,7 @@ file = YAML.load_file('config/test_data.yml')
   end
 end
 
-=begin
+
 And (/^I click on skip the tutorial/) do
   sleep 5
   if @pages.login.skipButton.visible?
@@ -31,4 +25,12 @@ And (/^I click on skip the tutorial/) do
     puts 'Skip button is invisble'
   end
 end
-=end
+
+Then (/^I see that login was successful/) do
+  sleep 1
+  if @pages.home.userSettings.visible?
+    puts 'Succes'
+  else
+    puts 'smth failed'
+  end
+end
