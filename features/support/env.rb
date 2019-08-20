@@ -73,7 +73,7 @@ Before() do |_scenario|
   Capybara.current_session.driver.browser.manage.delete_all_cookies
  Capybara.current_session.driver.browser.manage.window.resize_to(1800, 1000)
   Capybara.ignore_hidden_elements = false
-  Capybara.default_max_wait_time = 10
+  Capybara.default_max_wait_time = 5
   @pages.login.load_home_page
 end
 

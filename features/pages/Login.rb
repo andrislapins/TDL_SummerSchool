@@ -22,5 +22,8 @@ class LoginPage < BasePage
 
   def load_home_page
     visit ''
+    @email.visible?
+    @password.visible?
+    @loginButton.visible?
   end
 end

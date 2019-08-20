@@ -1,9 +1,9 @@
-Given(/^I am on login page$/) do
+Given(/^I am on Discord login page$/) do
   @pages.login.load_home_page
 end
 
 And(/^I login as (.*)/) do |user|
-file = YAML.load_file('config/test_data.yml')
+  file = YAML.load_file('config/test_data.yml')
   case user
     when 'user1' then
       $user_manager.current_user = 'user1'
@@ -28,9 +28,26 @@ end
 
 Then (/^I see that login was successful/) do
   sleep 1
-  if @pages.home.userSettings.visible?
-    puts 'Succes'
+  @pages.home.userSettings.visible?
+  @pages.home.friendsTab.visible?
+  @pages.home.homeButton.visible?
+end
+
+And (/^I log out from Discord App$/) do
+  sleep 1
+  @pages.home.userSettings.click
+  sleep 1
+  @pages.home.logOutButton.click
+  sleep 1
+  if @pages.home.logOutConfirm.visible?  # problem
+    @pages.home.logOutConfirm.click
   else
-    puts 'smth failed'
+    puts 'Cant see logout confirm'
   end
 end
+
+Then (/^I have successfully logged out$/) do
+  sleep 1
+  @pages.login.email.visible?
+end
+
